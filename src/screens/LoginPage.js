@@ -64,7 +64,7 @@ const LoginPage=({navigation})=> {
       </Pressable>
 
       <Pressable 
-      onPress={()=>navigation.navigate('SignUp')}   //console log yerine icerisine ne set ediyorsak onu yazıyoruz setResult()
+      onPress={()=>navigation.navigate('SignUp')}   
       style={({pressed})=> [{
       backgroundColor:pressed? "gray" :'lightgray'
 
