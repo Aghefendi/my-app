@@ -6,23 +6,26 @@ import {
   TextInput,
   Pressable,
   Image } from 'react-native';
-import React, {useState} from 'react';
+import React from 'react';
 import {Loading,CustomTextInput,CustomButton} from '../Component'
+import {useSelector,useDispatch} from 'react-redux'
+import { setEmail,setPassword,setIsloading } from '../Redux/userSlace';
 
 
 
 
 const LoginPage=({navigation})=> {
 
-  const[email , setEmail] = useState("")
-  const[password , setPassword]=useState("")
-  const[result , setResult]=useState("")
-  const [isLoading, setIsLoading] = useState(false)
   
+
+  
+  const {email,password,isLoading}=useSelector((state)=>state.user)
+  const dispatch=useDispatch()
+
 
   return (
     <View style={styles.container}>
-      <Text style={styles.welcome}>Welcome {result}</Text>
+      <Text style={styles.welcome}>Welcome </Text>
     <Image 
       source={require('./../../assets/images/loginicon.png')}
       style={styles.image}/>
@@ -31,14 +34,14 @@ const LoginPage=({navigation})=> {
     <CustomTextInput
     title="Email"
     isSecureText={false}
-    handleOnChangeText={setEmail}
+    handleOnChangeText={(text)=>dispatch(setEmail(text))}
     handleValue={email}
     handlePlaceHolder="Enter Your Email"
     />
      <CustomTextInput
     title="Password"
     isSecureText={true}
-    handleOnChangeText={setPassword}
+    handleOnChangeText={(password)=>useDispatch(setPassword(password))}
     handleValue={password}
     handlePlaceHolder="Enter Your Password"
     
@@ -47,7 +50,7 @@ const LoginPage=({navigation})=> {
     <CustomButton
     ButtonText="Login"
     setWidth="80%"
-    handleOnPress={()=>setIsLoading(true)}
+    handleOnPress={()=>dispatch(setIsloading(true))}
     
     />
 
@@ -63,7 +66,7 @@ const LoginPage=({navigation})=> {
       <Text style={styles.textStyle}>Text Text </Text>
       </View> */}
 
-      {isLoading? <Loading name="Beybi"  changeIsLoading={()=>setIsLoading(false)}/> : null}
+      {isLoading? <Loading name="Beybi"  changeIsLoading={()=>dispatch(setIsloading(false))}/> : null}
        
     </View>
   );

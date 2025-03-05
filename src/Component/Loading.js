@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View ,ActivityIndicator, Pressable} from 'react-native'   //rnfes => component yapısı
 import React from 'react'
 
+
 const Loading = ({changeIsLoading,name}) => {   //iki tane kullanımı var props yazarak veya isimlerini vererek
   return (
     <View style={styles.container}>
