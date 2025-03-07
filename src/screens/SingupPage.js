@@ -1,6 +1,8 @@
   import { StyleSheet, Text, View,Image,SafeAreaView} from 'react-native'
   import React,{useState} from 'react'
-  import {CustomTextInput,CustomButton} from '../Component'
+  import {CustomTextInput,CustomButton, Loading} from '../Component'
+  import { useDispatch,useSelector } from 'react-redux'
+  import { register } from '../Redux/userSlace'
 
 
 
@@ -9,6 +11,17 @@
     const {email,setEmail}=useState("")
     const {password, setPassword}=useState("")
 
+    const dispact=useDispatch();
+    const {isLoading}=useSelector(state=>state.user)
+    const handleRegister=()=>{
+
+      dispact(register({email,password}))
+    }
+
+    if(isLoading){
+
+      return <Loading/>
+    }
     return (
    
       
@@ -54,7 +67,7 @@
       <CustomButton ButtonText="Sing Up"
       
       setWidth='100%'
-      handleOnPress={()=>console.log(name," ",email," ",password)}
+      handleOnPress={handleRegister}
     
       
       />
@@ -95,11 +108,11 @@
 
   },
   ImageContainer:{
-    flex:1,
+    flex:2,
     width:'100%',
     alignItems:'center',
     justifyContent:'center',
-    marginTop:30
+    marginTop:50
   },
 
   TextInputContainer:{
@@ -108,12 +121,12 @@
     width:'100%',
     alignItems:'center',
     paddingVertical:10,
-    justifyContent:'flex-start'
+    justifyContent:'center'
 
 
   },
   ButtonContainer:{
-    flex:3,
+    flex:2,
     width:'100%',
     alignItems:'center',
 
