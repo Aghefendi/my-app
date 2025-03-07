@@ -1,4 +1,4 @@
-  import { StyleSheet, Text, View,Image,SafeAreaView,KeyboardAvoidingView} from 'react-native'
+  import { StyleSheet, Text, View,Image,SafeAreaView} from 'react-native'
   import React,{useState} from 'react'
   import {CustomTextInput,CustomButton} from '../Component'
 
@@ -10,7 +10,10 @@
     const {password, setPassword}=useState("")
 
     return (
-    <SafeAreaView style={styles.container}>
+   
+      
+      <SafeAreaView style={styles.container} >
+       
       <View style={styles.ImageContainer}>
         <Image 
         style={styles.Image}
@@ -57,7 +60,11 @@
       />
       </View>
    
-    </SafeAreaView>  
+      </SafeAreaView>
+      
+      
+    
+    
     )
   }
 
@@ -92,7 +99,7 @@
     width:'100%',
     alignItems:'center',
     justifyContent:'center',
-    marginTop:50
+    marginTop:30
   },
 
   TextInputContainer:{

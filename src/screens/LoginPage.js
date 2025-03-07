@@ -6,20 +6,22 @@ import {
   TextInput,
   Pressable,
   Image } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import {Loading,CustomTextInput,CustomButton} from '../Component'
 import {useSelector,useDispatch} from 'react-redux'
 import { setEmail,setPassword,setIsloading } from '../Redux/userSlace';
+import { login } from '../Redux/userSlace';
 
 
 
 
 const LoginPage=({navigation})=> {
 
-  
+  const [email, setEmail]=useState('')
+  const [password, setPassword]=useState('')
 
   
-  const {email,password,isLoading}=useSelector((state)=>state.user)
+  const {isLoading}=useSelector((state)=>state.user)
   const dispatch=useDispatch()
 
 
@@ -34,14 +36,14 @@ const LoginPage=({navigation})=> {
     <CustomTextInput
     title="Email"
     isSecureText={false}
-    handleOnChangeText={(text)=>dispatch(setEmail(text))}
+    handleOnChangeText={(text)=>setEmail(text)}
     handleValue={email}
     handlePlaceHolder="Enter Your Email"
     />
      <CustomTextInput
     title="Password"
     isSecureText={true}
-    handleOnChangeText={(password)=>useDispatch(setPassword(password))}
+    handleOnChangeText={(password)=>setPassword(password)}
     handleValue={password}
     handlePlaceHolder="Enter Your Password"
     
@@ -50,7 +52,7 @@ const LoginPage=({navigation})=> {
     <CustomButton
     ButtonText="Login"
     setWidth="80%"
-    handleOnPress={()=>dispatch(setIsloading(true))}
+    handleOnPress={()=>dispatch(login({email,password}))}
     
     />
 
